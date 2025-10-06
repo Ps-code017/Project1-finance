@@ -1,0 +1,21 @@
+# General
+.DS_Store
+.vscode/
+
+# Node.js
+/backend/node_modules
+/backend/dist
+/frontend/node_modules
+/frontend/build
+
+# Python
+/ml-service/__pycache__
+/ml-service/venv
+/ml-service/.pytest_cache
+*.pyc
+
+# Operating System Files
+*~
+
+# Environment files
+**/.env
