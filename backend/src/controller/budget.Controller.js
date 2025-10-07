@@ -9,7 +9,7 @@ const getMonthKey=(date)=>{
 
 export const getAllBudget=asyncHandler(async(req,res)=>{
     const budgets=await MonthlyBudget.find({userId:req.user._id}).sort({monthKey:-1})
-    return res.stauts(200).json(new ApiResponse(200,"all budgets fetched",budgets))
+    return res.status(200).json(new ApiResponse(200,"all budgets fetched",budgets))
 })
 
 export const getBudgetByMonthKey=asyncHandler(async(req,res)=>{
@@ -17,7 +17,7 @@ export const getBudgetByMonthKey=asyncHandler(async(req,res)=>{
     const budget=await MonthlyBudget.findOne({userId:req.user._id,monthKey})
     if(!budget) throw new ApiError(400,"no budget found for this month")
 
-    return res.stauts(200).json(new ApiResponse(200,"budget for month successful",budget))
+    return res.status(200).json(new ApiResponse(200,"budget for month successful",budget))
 })
 
 export const createOrUpdateBudget=asyncHandler(async(req,res)=>{

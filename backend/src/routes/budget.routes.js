@@ -4,7 +4,7 @@ import { verifyJWT } from "../middleware/auth.middleware.js";
 const router=Router()
 
 router.route('/').get(verifyJWT,getAllBudget).post(verifyJWT,createOrUpdateBudget)
-router.get('/:monthkey',getBudgetByMonthKey)
-router.delete('/:id',deleteBudgetById)
+router.get('/:monthKey',verifyJWT,getBudgetByMonthKey)
+router.delete('/:id',verifyJWT,deleteBudgetById)
 
 export default router
