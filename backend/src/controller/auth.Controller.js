@@ -60,14 +60,15 @@ export const googleCallbackController=asyncHandler(async(req,res)=>{
             name:googleUser.name,email:googleUser.email
         })
     }
-    user.google_id=googleUser.sub
+    user.googleId=googleUser.sub
     await user.save();
 
-    const accessToken= jwt.sign({id:user._id,email:user.email,gid:user.google_id},process.env.ACCESS_SECRET_KEY,{expiresIn:process.env.ACCESS_EXPIRY})
-    const refreshToken= jwt.sign({id:user._id,gid:user.google_id},process.env.REFRESH_SECRET_KEY,{expiresIn:process.env.REFRESH_EXPIRY})
+    const accessToken= jwt.sign({_id:user._id,email:user.email,gid:user.googleId},process.env.ACCESS_SECRET_KEY,{expiresIn:process.env.ACCESS_EXPIRY})
+    const refreshToken= jwt.sign({id:user._id,gid:user.googleId},process.env.REFRESH_SECRET_KEY,{expiresIn:process.env.REFRESH_EXPIRY})
+    console.log(accessToken)
     user.refreshToken=refreshToken
     await user.save();
 
-    res.cookie("refreshToken",refreshToken,options).cookie("accessToken",accessToken.options_access)
+    res.cookie("refreshToken",refreshToken,options).cookie("accessToken",accessToken,options_access)
     res.redirect(process.env.FRONTEND_REDIRECT_URI)
 })

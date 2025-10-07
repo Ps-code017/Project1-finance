@@ -10,7 +10,7 @@ const userSchema=new mongoose.Schema({
         required:[true,"Provide email"],
         unique:true,
     },
-    google_id:{
+    googleId:{
         type:String
     },
     refreshToken:{

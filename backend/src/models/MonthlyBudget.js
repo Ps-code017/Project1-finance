@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from "mongoose"
 
 const MonthlyBudgetSchema = new mongoose.Schema({
   userId: {
@@ -17,7 +17,14 @@ const MonthlyBudgetSchema = new mongoose.Schema({
   totalSpent: { 
     type: Number,
     default: 0
-  }
+  },
+  categoryBudgets: [
+    {
+      category: { type: String, required: true },
+      limit: { type: Number, default: 0 },
+      spent: { type: Number, default: 0 }
+    }
+]
 }, { timestamps: true });
 
 
