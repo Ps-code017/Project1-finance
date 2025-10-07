@@ -9,7 +9,11 @@ app.use(express.static("public"))
 app.use(cookieParser())
 
 //import routes
+import authRouter from "./routes/auth.routes.js"
+import sampleRouter from "./routes/sample.routes.js"
 
 //give path to routes app.use('/api/home',homerouter)
+app.use('/api/auth',authRouter)
+app.use('/api/sample',sampleRouter)
 
 export {app};
