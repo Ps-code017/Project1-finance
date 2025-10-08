@@ -19,13 +19,28 @@ const transactionSchema=new mongoose.Schema({
         type:Date,
         required:true
     },
+    monthKey: {
+        type: String, // 'YYYY-MM'
+        required: true,
+        index: true   // enables fast lookups by month
+    },
     merchant:{
         type:String,
         required:true
     },
     category:{
-        type:String
+        type:String,
+        default:"Uncategorized"
     }
 },{timestamps:true})
 
-export const transaction=mongoose.model("Transaction",transactionSchema)
+transactionSchema.pre("save",function(next){
+    if(!this.monthKey && this.date){
+        this.monthKey=this.date.toISOString().slice(0,7)
+    }
+    next();
+})
+
+transactionSchema.index({ user: 1, monthKey: 1 });
+
+export const Transaction=mongoose.model("Transaction",transactionSchema)
