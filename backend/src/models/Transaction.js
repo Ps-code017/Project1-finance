@@ -21,7 +21,6 @@ const transactionSchema=new mongoose.Schema({
     },
     monthKey: {
         type: String, // 'YYYY-MM'
-        required: true,
         index: true   // enables fast lookups by month
     },
     merchant:{

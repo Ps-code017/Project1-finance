@@ -6,12 +6,14 @@ export const updateBudgetonTransaction=async(transaction,deltaAmount,oldCategory
     //transaction --> transaction document
     // deltaAmount --> net change (new amount - old amount ) (-/+ of transaction.amount)
     // oldCategory --> category prior update (null in case of new transaction)
+    console.log("updating the budget");
+    
 
     if(deltaAmount==0 || transaction.type!=='debit'){
         return;
     }
     const monthKey=transaction.monthKey
-    const userId=transaction.userId
+    const userId=transaction.user
     const newCategory=transaction.category
 
     await MonthlyBudget.updateOne({userId,monthKey},
@@ -23,7 +25,7 @@ export const updateBudgetonTransaction=async(transaction,deltaAmount,oldCategory
     const primaryUpdates={
         $inc:{
             totalSpent:deltaAmount,
-            'categoryBudget.$[elem].spent':deltaAmount
+            'categoryBudgets.$[elem].spent':deltaAmount
         }
     }
     let arrayFilter=[{'elem.category':newCategory}]

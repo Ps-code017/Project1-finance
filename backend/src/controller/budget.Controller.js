@@ -31,7 +31,7 @@ export const createOrUpdateBudget=asyncHandler(async(req,res)=>{
             },
             {new:true,upsert:true,runValidators:true}
         )
-        return res.status(200).json(new ApiResponse(200,"created/updated the budget",budget))
+        return res.status(200).json(new ApiResponse(200,"created / updated the budget",budget))
     } catch (error) {
         throw new ApiError(400,error.message)
     }
