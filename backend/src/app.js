@@ -13,12 +13,14 @@ import authRouter from "./routes/auth.routes.js"
 import sampleRouter from "./routes/sample.routes.js"
 import budgetRouter from "./routes/budget.routes.js"
 import transactionRouter from "./routes/transactions.routes.js"
+import dashboardRouter from "./routes/dashboard.routes.js"
 
 //give path to routes app.use('/api/home',homerouter)
 app.use('/api/auth',authRouter)
 app.use('/api/sample',sampleRouter)
 app.use('/api/budget',budgetRouter)
 app.use('/api/transactions',transactionRouter)
+app.use('/api/dashboard',dashboardRouter)
 
 
 export {app};

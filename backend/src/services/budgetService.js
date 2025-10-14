@@ -6,7 +6,7 @@ export const updateBudgetonTransaction=async(transaction,deltaAmount,oldCategory
     //transaction --> transaction document
     // deltaAmount --> net change (new amount - old amount ) (-/+ of transaction.amount)
     // oldCategory --> category prior update (null in case of new transaction)
-    console.log("updating the budget");
+    // console.log("updating the budget");
     
 
     if(deltaAmount==0 || transaction.type!=='debit'){
